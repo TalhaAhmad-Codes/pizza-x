@@ -8,7 +8,7 @@ namespace PizzaX.Domain.ValueObjects
         public decimal Amount { get; }
 
         // Constructor
-        public Money(decimal amount)
+        private Money(decimal amount)
         {
             // Guard invalid data
             Guard.AgainstNegativeValue(amount, nameof(Amount));

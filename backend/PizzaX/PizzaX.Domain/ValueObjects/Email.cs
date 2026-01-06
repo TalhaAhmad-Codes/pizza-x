@@ -8,7 +8,7 @@ namespace PizzaX.Domain.ValueObjects
         public string Value { get; }
 
         // Constructor
-        public Email(string email)
+        private Email(string email)
         {
             // Guard against invalid value
             Guard.AgainstNullOrWhitespace(email, "Email");

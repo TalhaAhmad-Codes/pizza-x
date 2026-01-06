@@ -10,7 +10,7 @@ namespace PizzaX.Domain.ValueObjects
         public readonly int LengthLimit = 8;
 
         // Constructor
-        public Password(string password)
+        private Password(string password)
         {
             // Guard against invalid values
             Guard.AgainstNullOrWhitespace(password, nameof(Password));

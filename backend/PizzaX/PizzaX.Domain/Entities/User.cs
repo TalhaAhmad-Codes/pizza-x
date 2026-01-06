@@ -27,8 +27,8 @@ namespace PizzaX.Domain.Entities
 
             // Asigning values
             Username = username;
-            Email = new(email);
-            Password = new(password);
+            Email = Email.Create(email);
+            Password = Password.Create(password);
             UserRole = userRole;
         }
 
@@ -74,7 +74,7 @@ namespace PizzaX.Domain.Entities
             // Rule: For security concern, the user must enter old password to change his current password.
             Guard.AgainstPasswordMismatch(oldPassword, Password.Hash);
 
-            Password = new(newPassword);
+            Password = Password.Create(newPassword);
 
             MarkUpdated();
         }
