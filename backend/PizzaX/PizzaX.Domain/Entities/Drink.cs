@@ -22,5 +22,13 @@ namespace PizzaX.Domain.Entities
         // Method - Create new object
         public static Drink Create(byte[]? image, decimal unitPrice, int quantity, string? description, DrinkType drinkType, DrinkDetails drinkDetails)
             => new(image, unitPrice, quantity, description, drinkType, drinkDetails);
+
+        // Method - Update drink details
+        public void UpdateDrinkDetails(DrinkDetails drinkDetails)
+        {
+            DrinkDetails = drinkDetails;
+
+            MarkUpdated();
+        }
     }
 }

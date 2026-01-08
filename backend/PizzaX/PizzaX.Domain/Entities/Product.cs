@@ -34,22 +34,12 @@ namespace PizzaX.Domain.Entities
         /* Methods to change properties of the product */
         /***********************************************/
 
-        // Increment quantity by a number
-        public void IncrementQuantity(int quantity = 1)
+        // Update quantity of the product
+        public void UpdateQuantity(int quantity)
         {
             Guard.AgainstZeroOrLess(quantity, nameof(Quantity));
 
-            Quantity = Quantity.Create(Quantity.Value + quantity);
-
-            MarkUpdated();
-        }
-
-        // Decrement quantity by a number
-        public void DecrementQuantity(int quantity = 1)
-        {
-            Guard.AgainstZeroOrLess(quantity, nameof(Quantity));
-
-            Quantity = Quantity.Create(Quantity.Value - quantity);
+            Quantity = Quantity.Create(quantity);
 
             MarkUpdated();
         }

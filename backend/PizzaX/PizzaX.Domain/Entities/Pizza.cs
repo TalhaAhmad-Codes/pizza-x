@@ -9,7 +9,7 @@ namespace PizzaX.Domain.Entities
         public Guid VarietyId { get; private set; }
 
         // Navigation properties
-        public Variety Variety { get; private set; }
+        public PizzaVariety Variety { get; private set; }
 
         // Constructors
         private Pizza() : base() { }
@@ -24,17 +24,5 @@ namespace PizzaX.Domain.Entities
         // Method - Create a new object
         public static Pizza Create(byte[]? image, decimal unitPrice, int quantity, string? description, Size size, Guid varietyId)
             => new(image, unitPrice, quantity, description, size, varietyId);
-
-        /**************************************/
-        /* Methods to update pizza properties */
-        /**************************************/
-
-        // Update size of the pizza
-        public void UpdateSize(Size size)
-        {
-            Size = size;
-
-            MarkUpdated();
-        }
     }
 }

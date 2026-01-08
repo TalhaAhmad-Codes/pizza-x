@@ -4,7 +4,7 @@ using PizzaX.Domain.Common.Exceptions;
 
 namespace PizzaX.Domain.Entities
 {
-    public sealed class Variety : AuditableEntity
+    public sealed class PizzaVariety : AuditableEntity
     {
         // Attribute
         public string Name { get; private set; }
@@ -14,15 +14,15 @@ namespace PizzaX.Domain.Entities
         public IReadOnlyCollection<Pizza> Pizzas => _pizzas;
 
         // Constructor
-        private Variety(string name)
+        private PizzaVariety(string name)
         {
-            Guard.AgainstNullOrWhitespace(name, nameof(Variety));
+            Guard.AgainstNullOrWhitespace(name, nameof(PizzaVariety));
 
             Name = name;
         }
 
         // Method - Create a new object
-        public static Variety Create(string name)
+        public static PizzaVariety Create(string name)
             => new(name);
 
         // Method - Add pizza
