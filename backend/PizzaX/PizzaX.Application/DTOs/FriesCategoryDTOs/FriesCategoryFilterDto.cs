@@ -2,7 +2,7 @@
 
 namespace PizzaX.Application.DTOs.FriesCetagoryDTOs
 {
-    public sealed class FriesCetagoryFilterDto : BaseFilterDto
+    public sealed class FriesCategoryFilterDto : BaseFilterDto
     {
         public string? Name { get; init; }
     }
