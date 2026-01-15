@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaX.Application.DTOs.Common;
 using PizzaX.Application.DTOs.PizzaDTOs;
-using PizzaX.Application.DTOs.PizzaDTOs.PizzaUpdateDtos;
 using PizzaX.Application.Interfaces.Repositories;
 using PizzaX.Domain.Entities;
 using PizzaX.Infrastructure.Data;
