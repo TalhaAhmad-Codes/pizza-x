@@ -1,5 +1,4 @@
-﻿using PizzaX.Domain.Common;
-using PizzaX.Domain.Enums.Pizza;
+﻿using PizzaX.Domain.Enums.Pizza;
 
 namespace PizzaX.Domain.Entities
 {

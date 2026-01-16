@@ -13,6 +13,8 @@ namespace PizzaX.Domain.Entities
         public IReadOnlyCollection<Pizza> Pizzas => _pizzas;
 
         // Constructor
+        private PizzaVariety() { }
+
         private PizzaVariety(string name)
         {
             Guard.AgainstNullOrWhitespace(name, nameof(PizzaVariety));

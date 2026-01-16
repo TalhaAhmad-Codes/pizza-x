@@ -16,8 +16,8 @@ namespace PizzaX.Infrastructure.Repositories
             var query = dbSet.AsQueryable();
 
             // Applying filters
-            if (filterDto.FriesCetagoryId.HasValue)
-                query = query.Where(f => f.FriesCategoryId == filterDto.FriesCetagoryId);
+            if (filterDto.Category != null)
+                query = query.Where(f => f.Category.ToLower() == filterDto.Category.ToLower());
 
             if (filterDto.MinPrice.HasValue)
                 query = query.Where(f => f.Price.UnitPrice >= filterDto.MinPrice);

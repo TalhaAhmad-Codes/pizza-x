@@ -10,7 +10,7 @@ namespace PizzaX.Application.Mappers
             {
                 Id = fries.Id,
                 Image = fries.Image,
-                FriesCategoryId = fries.FriesCategoryId,
+                Category = fries.Category,
                 UnitPrice = fries.Price.UnitPrice,
                 TotalPrice = fries.TotalPrice,
                 Quantity = fries.Quantity.Value,
