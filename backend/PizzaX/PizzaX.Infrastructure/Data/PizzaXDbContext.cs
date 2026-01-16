@@ -19,7 +19,7 @@ namespace PizzaX.Infrastructure.Data
         // Configurations
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /* User - Configuration */
+            /*/ <----- User - Configuration -----> /*/
             modelBuilder.Entity<User>(builder =>
             {
                 // Owns a unique (email) value object
@@ -55,7 +55,7 @@ namespace PizzaX.Infrastructure.Data
                        .IsRequired();
             });
 
-            /* Pizza - Configuration */
+            /*/ <----- Pizza - Configuration -----> /*/
             modelBuilder.Entity<Pizza>(builder =>
             {
                 // One-to-Many relation with the variety of pizza
@@ -85,7 +85,7 @@ namespace PizzaX.Infrastructure.Data
                 });
             });
 
-            /* Pizza Vareity - Configuration */
+            /*/ <----- Pizza Vareity - Configuration -----> /*/
             modelBuilder.Entity<PizzaVariety>(builder =>
             {
                 // Many-to-One relation with pizzas
@@ -98,7 +98,7 @@ namespace PizzaX.Infrastructure.Data
                        .IsRequired();
             });
 
-            /* Fries - Configuration */
+            /*/ <----- Fries - Configuration -----> /*/
             modelBuilder.Entity<Fries>(builder =>
             {
                 // Category property
@@ -121,7 +121,7 @@ namespace PizzaX.Infrastructure.Data
                 });
             });
 
-            /* Drink - Configurations */
+            /*/ <----- Drink - Configurations -----> /*/
             modelBuilder.Entity<Drink>(builder =>
             {
                 // Drink type config

@@ -8,7 +8,8 @@ namespace PizzaX.Domain.ValueObjects.Drink
         public string Company { get; }
         public string? RetailerContactNumber { get; }
 
-        // Constructor
+        // Constructors
+        private DrinkDetails() { }
         private DrinkDetails(string company, string? reatilerContactNumber)
         {
             Guard.AgainstNullOrWhitespace(company, nameof(Company));

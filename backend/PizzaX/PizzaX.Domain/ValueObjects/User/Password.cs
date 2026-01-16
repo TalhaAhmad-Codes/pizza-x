@@ -10,6 +10,7 @@ namespace PizzaX.Domain.ValueObjects.User
         public readonly int MinLengthLimit = 8;
 
         // Constructor
+        private Password() { }
         private Password(string password)
         {
             // Guard against invalid values

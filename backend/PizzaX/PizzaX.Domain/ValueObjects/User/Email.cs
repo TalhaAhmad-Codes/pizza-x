@@ -8,7 +8,8 @@ namespace PizzaX.Domain.ValueObjects.User
         // Attribute
         public string Value { get; }
 
-        // Constructor
+        // Constructors
+        private Email() { }
         private Email(string email)
         {
             // Guard against invalid value
