@@ -97,3 +97,8 @@ logs/
 secrets.json
 *.key
 *.pem
+
+########################################
+# Miscellaneous
+########################################
+appsettings.json
