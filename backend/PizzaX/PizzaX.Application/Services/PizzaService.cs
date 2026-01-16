@@ -21,7 +21,7 @@ namespace PizzaX.Application.Services
                 image: dto.Image,
                 unitPrice: dto.UnitPrice,
                 quantity: dto.Quantity,
-                description: dto.Description,
+                description: dto.Description!.Trim(),
                 size: dto.Size,
                 varietyId: dto.VarietyId
             );

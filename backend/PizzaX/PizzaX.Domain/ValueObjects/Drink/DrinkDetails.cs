@@ -1,4 +1,5 @@
 ﻿using PizzaX.Domain.Common;
+using System.Text.RegularExpressions;
 
 namespace PizzaX.Domain.ValueObjects.Drink
 {
@@ -13,7 +14,7 @@ namespace PizzaX.Domain.ValueObjects.Drink
         private DrinkDetails(string company, string? reatilerContactNumber)
         {
             Guard.AgainstNullOrWhitespace(company, nameof(Company));
-            Guard.AgainstWhitespace(reatilerContactNumber, nameof(RetailerContactNumber));
+            AgainstInvalidContactNumber(reatilerContactNumber!);
 
             Company = company;
             RetailerContactNumber = reatilerContactNumber;
@@ -22,6 +23,20 @@ namespace PizzaX.Domain.ValueObjects.Drink
         // Method - Create a new object
         public static DrinkDetails Create(string company, string? reatilerContactNumber)
             => new(company, reatilerContactNumber);
+
+        // Method - Check if phone number is valid or not
+        private static void AgainstInvalidContactNumber(string number)
+        {
+            Regex PhoneRegex = new(
+                @"^\+?[1-9]\d{0,2}[\s\-\.]?\(?\d{1,4}\)?([\s\-\.]?\d){6,10}$",
+                RegexOptions.Compiled
+            );
+
+            Guard.AgainstNullOrWhitespace(number, nameof(RetailerContactNumber));
+
+            if (!PhoneRegex.IsMatch(number))
+                throw new DomainException("The given contact number is not valid.");
+        }
 
         // Method - Convert to string
         public override string ToString()

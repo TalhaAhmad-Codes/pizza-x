@@ -22,10 +22,10 @@ namespace PizzaX.Application.Services
                 image: dto.Image,
                 unitPrice: dto.UnitPrice,
                 quantity: dto.Quantity,
-                description: dto.Description,
+                description: dto.Description!.Trim(),
                 drinkType: dto.DrinkType,
-                companyName: dto.CompanyName,
-                retailerContactNumber: dto.RetailerContactNumber
+                companyName: dto.CompanyName.Trim(),
+                retailerContactNumber: dto.RetailerContactNumber!.Trim()
             );
 
             await repository.AddAsync(drink);
