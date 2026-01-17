@@ -26,7 +26,7 @@ namespace PizzaX.Domain.Entities
         // Methods - Update drink details
         public void UpdateDrinkDetailsCompanyName(string companyName)
         {
-            DrinkDetails = DrinkDetails.Create(companyName, DrinkDetails.RetailerContactNumber);
+            DrinkDetails = DrinkDetails.Create(companyName, DrinkDetails.RetailerContactNumber?.Value);
 
             MarkUpdated();
         }

@@ -146,15 +146,20 @@ namespace PizzaX.Infrastructure.Data
                 // Drink details config
                 builder.OwnsOne(d => d.DrinkDetails, details =>
                 {
+                    // Company name
                     details.Property(c => c.Company)
                            .HasColumnName("Company")
                            .IsRequired();
 
-                    details.Property(n => n.RetailerContactNumber)
-                           .HasColumnName("Contact");
+                    // Retailer contact number
+                    details.OwnsOne(n => n.RetailerContactNumber, number =>
+                    {
+                        number.Property(c => c.Value)
+                              .HasColumnName("Contact");
 
-                    details.HasIndex(n => n.RetailerContactNumber)
-                           .IsUnique();
+                        number.HasIndex(c => c.Value)
+                              .IsUnique();
+                    });
                 });
 
                 // Product configs
