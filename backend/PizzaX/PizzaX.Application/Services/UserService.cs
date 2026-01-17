@@ -18,9 +18,9 @@ namespace PizzaX.Application.Services
         public async Task<UserDto> CreateAsync(CreateUserDto dto)
         {
             var user = User.Create(
-                username: dto.Username.Trim(),
-                email: dto.Email.Trim(),
-                password: dto.Password.Trim(),
+                username: dto.Username,
+                email: dto.Email,
+                password: dto.Password,
                 userRole: dto.Role
             );
 

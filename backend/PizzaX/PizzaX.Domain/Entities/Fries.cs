@@ -15,11 +15,19 @@ namespace PizzaX.Domain.Entities
         {
             Guard.AgainstNullOrWhitespace(category, nameof(Category));
 
-            Category = category;
+            Category = category.Trim().ToLower();
         }
 
         // Method - Create new object
         public static Fries Create(byte[]? image, decimal unitPrice, int quantity, string? description, string category)
             => new(image, unitPrice, quantity, description, category);
+
+        // Method - Update Category
+        public void UpdateCategory(string category)
+        {
+            Guard.AgainstNullOrWhitespace(category, nameof(Category));
+
+            Category = category.Trim().ToLower();
+        }
     }
 }

@@ -14,9 +14,10 @@ namespace PizzaX.Domain.ValueObjects.Drink
         private DrinkDetails(string company, string? reatilerContactNumber)
         {
             Guard.AgainstNullOrWhitespace(company, nameof(Company));
+            RetailerContactNumber = reatilerContactNumber?.Trim();
             AgainstInvalidContactNumber(reatilerContactNumber!);
 
-            Company = company;
+            Company = company.Trim().ToLower();
             RetailerContactNumber = reatilerContactNumber;
         }
 

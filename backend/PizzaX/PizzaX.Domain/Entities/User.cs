@@ -25,7 +25,7 @@ namespace PizzaX.Domain.Entities
             Guard.AgainstMinStringLength(password, 8, nameof(Password));
 
             // Asigning values
-            Username = username;
+            Username = username.Trim();
             Email = Email.Create(email);
             Password = Password.Create(password);
             UserRole = userRole;
@@ -62,7 +62,7 @@ namespace PizzaX.Domain.Entities
         {
             Guard.AgainstNullOrWhitespace(username, nameof(Username));
 
-            Username = username;
+            Username = username.Trim();
 
             MarkUpdated();
         }

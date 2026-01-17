@@ -16,7 +16,7 @@ namespace PizzaX.Domain.ValueObjects.User
             Guard.AgainstNullOrWhitespace(email, "Email");
             VerifyFormat(email);
 
-            Value = email;
+            Value = email.Trim();
         }
 
         // Method - Create a new object

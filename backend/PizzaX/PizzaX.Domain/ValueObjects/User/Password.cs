@@ -19,7 +19,7 @@ namespace PizzaX.Domain.ValueObjects.User
 
             // Assigning values
             Length = password.Length;
-            Hash = ToHash(password);
+            Hash = ToHash(password.Trim());
         }
 
         // Method - Create a new object

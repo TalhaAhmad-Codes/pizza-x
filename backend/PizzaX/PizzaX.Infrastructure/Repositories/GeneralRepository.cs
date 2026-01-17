@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaX.Application.Interfaces.Repositories;
-using PizzaX.Domain.Common;
 using PizzaX.Infrastructure.Data;
 
 namespace PizzaX.Infrastructure.Repositories
