@@ -5,7 +5,7 @@ namespace PizzaX.Application.DTOs.PizzaDTOs
 {
     public sealed class CreatePizzaDto : BaseCreateProductDto
     {
-        public Size Size { get; init; }
+        public PizzaSize Size { get; init; }
         public Guid VarietyId { get; init; }
     }
 }

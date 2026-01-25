@@ -13,7 +13,7 @@ namespace PizzaX.Domain.Entities
         public Price Price { get; protected set; }
         public Quantity Quantity { get; protected set; }
         public string? Description { get; protected set; }
-        public Status StockStatus { get; protected set; }
+        public ProductStockStatus StockStatus { get; protected set; }
         public decimal TotalPrice => Price.TotalPrice(Quantity);
 
         // Constructors
@@ -31,8 +31,8 @@ namespace PizzaX.Domain.Entities
         }
 
         // Method - SetStockStatus
-        protected Status GetStockStatus()
-            => Quantity.Value > 0 ? Status.InStock : Status.OutOfStock;
+        protected ProductStockStatus GetStockStatus()
+            => Quantity.Value > 0 ? ProductStockStatus.InStock : ProductStockStatus.OutOfStock;
 
         /***********************************************/
         /* Methods to change properties of the product */

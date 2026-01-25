@@ -14,7 +14,6 @@ namespace PizzaX.Application.Interfaces.Services
         Task<bool> RemoveAsync(Guid id);
 
         // Update method
-        Task<PizzaVarietyNameUpdateDto?> GetUpdateNameDtoValues(Guid id);
-        Task<bool> UpdateNameAsync(Guid id, PizzaVarietyNameUpdateDto dto);
+        Task<bool> UpdateNameAsync(PizzaVarietyNameUpdateDto dto);
     }
 }

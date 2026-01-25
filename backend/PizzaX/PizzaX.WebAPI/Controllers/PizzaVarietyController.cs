@@ -63,11 +63,11 @@ namespace PizzaX.WebAPI.Controllers
         }
 
         [HttpPatch("{id:guid}/name")]
-        public async Task<IActionResult> UpdatePizzaVarietyNameAsync(Guid id, PizzaVarietyNameUpdateDto dto)
+        public async Task<IActionResult> UpdatePizzaVarietyNameAsync(PizzaVarietyNameUpdateDto dto)
         {
             try
             {
-                var result = await service.UpdateNameAsync(id, dto);
+                var result = await service.UpdateNameAsync(dto);
                 return result ? Ok($"Pizza variety's name has been updated successfully.") : NotFound();
             }
             catch (DomainException e)

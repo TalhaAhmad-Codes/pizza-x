@@ -12,12 +12,12 @@ namespace PizzaX.Domain.Entities
         public string Username {  get; private set; }
         public Email Email {  get; private set; }
         public Password Password { get; private set; }
-        public Role UserRole { get; private set; }
+        public UserRole UserRole { get; private set; }
 
         // Constructors
         private User() { }
 
-        private User(string username, string email, string password, Role userRole)
+        private User(string username, string email, string password, UserRole userRole)
         {
             // Guard against invalid values
             Guard.AgainstNullOrWhitespace(username, nameof(Username));
@@ -32,7 +32,7 @@ namespace PizzaX.Domain.Entities
         }
 
         // Method - Create a new object
-        public static User Create(string username, string email, string password, Role userRole)
+        public static User Create(string username, string email, string password, UserRole userRole)
             => new(username, email, password, userRole);
 
         /*******************************************/
@@ -83,7 +83,7 @@ namespace PizzaX.Domain.Entities
         }
 
         // Update role
-        public void UpdateUserRole(Role userRole, bool isVerifiedByAdmin)
+        public void UpdateUserRole(UserRole userRole, bool isVerifiedByAdmin)
         {
             // Rule: For security concern, the admin must approve the user to change his role
             Guard.AgainstUnauthorizedByAdmin(isVerifiedByAdmin);

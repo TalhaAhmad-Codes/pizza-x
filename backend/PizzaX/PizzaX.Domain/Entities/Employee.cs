@@ -13,9 +13,9 @@ namespace PizzaX.Domain.Entities
         public CNIC CNIC { get; private set; }
         public Address Address { get; private set; }
         public Contact Contact { get; private set; }
-        public Role JobRole { get; private set; }
+        public EmployeeRole JobRole { get; private set; }
         public Salary Salary { get; private set; }
-        public Shift Shift { get; private set; }
+        public EmployeeShift Shift { get; private set; }
         public DateOnly JoiningDate { get; private set; }
         public DateOnly? LeftDate { get; private set; }
 
@@ -25,7 +25,7 @@ namespace PizzaX.Domain.Entities
         // Constructors
         private Employee() { }
 
-        private Employee(Guid userId, Role jobRole, Salary salary, Name name)
+        private Employee(Guid userId, EmployeeRole jobRole, Salary salary, Name name)
         {
             UserId = userId;
             JobRole = jobRole;
@@ -34,14 +34,14 @@ namespace PizzaX.Domain.Entities
         }
 
         // Method - Create a new employee
-        public static Employee Create(Guid userId, Name name, Role jobRole, Salary salary)
+        public static Employee Create(Guid userId, Name name, EmployeeRole jobRole, Salary salary)
             => new(userId, jobRole, salary, name);
 
         /*******************************/
         /* Methods - Update Properties */
         /*******************************/
 
-        public void UpdateJobRole(Role jobRole)
+        public void UpdateJobRole(EmployeeRole jobRole)
         {
             JobRole = jobRole;
 

@@ -12,7 +12,7 @@ namespace PizzaX.Infrastructure.Repositories
     {
         public PizzaRepository(PizzaXDbContext dbContext) : base(dbContext) { }
 
-        public async Task<bool> ExistsBySizeAndVariety(Size size, Guid varietyId)
+        public async Task<bool> ExistsBySizeAndVariety(PizzaSize size, Guid varietyId)
         {
             var result = await GetAllAsync(new()
             {

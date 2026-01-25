@@ -10,6 +10,6 @@ namespace PizzaX.Application.DTOs.ProductDTOs
         public decimal? MaxPrice { get; init; }
         public int? MinQuantity { get; init; }
         public int? MaxQuantity { get; init; }
-        public Status? StockStatus { get; init; }
+        public ProductStockStatus? StockStatus { get; init; }
     }
 }

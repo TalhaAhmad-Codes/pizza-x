@@ -51,7 +51,7 @@ namespace PizzaX.Infrastructure.Data
                 // Role is required
                 builder.Property(u => u.UserRole)
                        .HasColumnName("Role")
-                       .HasDefaultValue(Role.Customer)
+                       .HasDefaultValue(UserRole.Customer)
                        .IsRequired();
             });
 
