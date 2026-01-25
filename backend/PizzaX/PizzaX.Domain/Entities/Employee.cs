@@ -13,11 +13,11 @@ namespace PizzaX.Domain.Entities
         public CNIC CNIC { get; private set; }
         public Address Address { get; private set; }
         public Contact Contact { get; private set; }
-        public EmployeeRole JobRole { get; private set; }
+        public EmployeeJobRole JobRole { get; private set; }
         public Salary Salary { get; private set; }
         public EmployeeShift Shift { get; private set; }
-        public DateOnly JoiningDate { get; private set; }
-        public DateOnly? LeftDate { get; private set; }
+        public DateTime JoiningDate { get; private set; }
+        public DateTime? LeftDate { get; private set; }
 
         // Navigation
         public User User { get; private set; }
@@ -25,23 +25,25 @@ namespace PizzaX.Domain.Entities
         // Constructors
         private Employee() { }
 
-        private Employee(Guid userId, EmployeeRole jobRole, Salary salary, Name name)
+        private Employee(Guid userId, EmployeeJobRole jobRole, Salary salary, Name name, DateTime joiningDate, DateTime? leftDate)
         {
             UserId = userId;
             JobRole = jobRole;
             Salary = salary;
             Name = name;
+            JoiningDate = joiningDate;
+            LeftDate = leftDate;
         }
 
         // Method - Create a new employee
-        public static Employee Create(Guid userId, Name name, EmployeeRole jobRole, Salary salary)
-            => new(userId, jobRole, salary, name);
+        public static Employee Create(Guid userId, Name name, EmployeeJobRole jobRole, Salary salary, DateTime joiningDate)
+            => new(userId, jobRole, salary, name, joiningDate, null);
 
         /*******************************/
         /* Methods - Update Properties */
         /*******************************/
 
-        public void UpdateJobRole(EmployeeRole jobRole)
+        public void UpdateJobRole(EmployeeJobRole jobRole)
         {
             JobRole = jobRole;
 
@@ -55,9 +57,46 @@ namespace PizzaX.Domain.Entities
             MarkUpdated();
         }
 
-        public void UpdateName()
+        public void UpdateName(string firstName, string? midName, string lastName, string fatherName)
         {
+            Name = Name.Create(firstName, midName, lastName, fatherName);
 
+            MarkUpdated();
+        }
+
+        public void UpdateAddress(string house, string area, string street, string city, string province, string? country)
+        {
+            Address = Address.Create(house, area, street, city, province, country);
+
+            MarkUpdated();
+        }
+
+        public void UpdateContact(string number)
+        {
+            Contact = Contact.Create(number);
+
+            MarkUpdated();
+        }
+
+        public void UpdateCNIC(string cnic)
+        {
+            CNIC = CNIC.Create(cnic);
+
+            MarkUpdated();
+        }
+
+        public void UpdateEmployeeShift(EmployeeShift empshift)
+        {
+            Shift = empshift;
+
+            MarkUpdated();
+        }
+
+        public void MarkJobLeaved()
+        {
+            LeftDate = DateTime.Now;
+
+            MarkUpdated();
         }
     }
 }

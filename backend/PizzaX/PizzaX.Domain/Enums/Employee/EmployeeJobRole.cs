@@ -1,6 +1,6 @@
 ﻿namespace PizzaX.Domain.Enums.Employee
 {
-    public enum EmployeeRole
+    public enum EmployeeJobRole
     {
         Owner = 1,
         Manager = 2,

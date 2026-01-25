@@ -1,5 +1,4 @@
 ﻿using PizzaX.Domain.Common;
-using PizzaX.Domain.ValueObjects.Common;
 
 namespace PizzaX.Domain.ValueObjects.Employee
 {
