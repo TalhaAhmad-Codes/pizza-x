@@ -104,6 +104,9 @@ namespace PizzaX.Domain.Entities
         {
             Guard.AgainstInvalidDateRange(JoiningDate, date);
 
+            if (HasLeft)
+                throw new DomainException("Employee had already been left.");
+
             LeftDate = date;
 
             MarkUpdated();

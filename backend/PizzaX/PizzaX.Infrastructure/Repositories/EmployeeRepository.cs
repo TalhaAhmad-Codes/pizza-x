@@ -3,6 +3,7 @@ using PizzaX.Application.DTOs.Common;
 using PizzaX.Application.DTOs.EmployeeDTOs;
 using PizzaX.Application.Interfaces.Repositories;
 using PizzaX.Domain.Entities;
+using PizzaX.Domain.Enums.User;
 using PizzaX.Infrastructure.Data;
 
 namespace PizzaX.Infrastructure.Repositories
@@ -84,6 +85,13 @@ namespace PizzaX.Infrastructure.Repositories
                 Items = items,
                 TotalCount = totalCount
             };
+        }
+
+        public async Task<bool> IsEligibleAsync(Guid userId)
+        {
+            var user = await dbContext.Set<User>().FindAsync(userId);
+
+            return user is not null && user.UserRole != UserRole.Customer;
         }
     }
 }

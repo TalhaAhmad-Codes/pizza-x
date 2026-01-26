@@ -9,11 +9,11 @@ namespace PizzaX.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public sealed class PizzaVarietyController : ControllerBase
+    public sealed class PizzaVarietiesController : ControllerBase
     {
         private readonly IPizzaVarietyService service;
 
-        public PizzaVarietyController(IPizzaVarietyService service)
+        public PizzaVarietiesController(IPizzaVarietyService service)
             => this.service = service;
 
         [HttpGet]

@@ -8,11 +8,11 @@ namespace PizzaX.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public sealed class UserController : ControllerBase
+    public sealed class UsersController : ControllerBase
     {
         private readonly IUserService service;
 
-        public UserController(IUserService service)
+        public UsersController(IUserService service)
             => this.service = service;
 
         [HttpGet]

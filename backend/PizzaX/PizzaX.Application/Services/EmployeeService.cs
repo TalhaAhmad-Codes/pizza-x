@@ -4,6 +4,7 @@ using PizzaX.Application.DTOs.EmployeeDTOs.EmployeeUpdateDtos;
 using PizzaX.Application.Interfaces.Repositories;
 using PizzaX.Application.Interfaces.Services;
 using PizzaX.Application.Mappers;
+using PizzaX.Domain.Common;
 using PizzaX.Domain.Entities;
 using PizzaX.Domain.ValueObjects.Common;
 using PizzaX.Domain.ValueObjects.Employee;
@@ -19,6 +20,12 @@ namespace PizzaX.Application.Services
 
         public async Task<EmployeeDto> AddAsync(CreateEmployeeDto dto)
         {
+            // Only users of role either "Employee" or "Admin" can create employee profile.
+            var eligible = await repository.IsEligibleAsync(dto.UserId);
+            if (!eligible)
+                throw new DomainException("The particular user is not eligible. The user must has a role of employee.");
+
+            // Creating employee profile
             var employee = Employee.Create(
                 userId: dto.UserId,
                 name: Name.Create(dto.FirstName, dto.MidName, dto.LastName, dto.FatherName),

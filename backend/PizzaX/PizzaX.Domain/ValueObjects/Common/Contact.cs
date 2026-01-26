@@ -25,12 +25,12 @@ namespace PizzaX.Domain.ValueObjects.Common
         // Method - Check if phone number is valid or not
         private static void AgainstInvalidContactNumber(string number)
         {
+            Guard.AgainstNullOrWhitespace(number, nameof(Contact));
+            
             Regex PhoneRegex = new(
                 @"^\+?[1-9]\d{0,2}[\s\-\.]?\(?\d{1,4}\)?([\s\-\.]?\d){6,10}$",
                 RegexOptions.Compiled
             );
-
-            Guard.AgainstNullOrWhitespace(number, nameof(Contact));
 
             if (!PhoneRegex.IsMatch(number))
                 throw new DomainException("The given contact number is not valid.");
