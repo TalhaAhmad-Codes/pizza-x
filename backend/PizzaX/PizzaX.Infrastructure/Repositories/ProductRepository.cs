@@ -32,12 +32,6 @@ namespace PizzaX.Infrastructure.Repositories
             if (filterDto.MaxPrice.HasValue)
                 query = query.Where(p => p.Price <= filterDto.MaxPrice.Value);
 
-            if (filterDto.MinQuantity.HasValue)
-                query = query.Where(p => p.Quantity >= filterDto.MinQuantity.Value);
-
-            if (filterDto.MaxQuantity.HasValue)
-                query = query.Where(p => p.Quantity <= filterDto.MaxQuantity.Value);
-
             var totalCount = await query.CountAsync();
             var items = await GetPagedResultItemsAsync(query, filterDto.PageNumber, filterDto.PageSize);
 

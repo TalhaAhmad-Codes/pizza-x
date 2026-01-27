@@ -188,13 +188,6 @@ namespace PizzaX.Infrastructure.Data
                          .IsRequired();
                 });
 
-                builder.OwnsOne(p => p.Quantity, quantity =>
-                {
-                    quantity.Property(q => q.Value)
-                            .HasColumnName("Quantity")
-                            .IsRequired();
-                });
-
                 builder.Property(p => p.Description)
                        .HasColumnName("Description")
                        .HasMaxLength(100);
@@ -215,6 +208,7 @@ namespace PizzaX.Infrastructure.Data
                 // Name property
                 builder.Property(v => v.Value)
                        .HasColumnName("Name")
+                       .HasMaxLength(50)
                        .IsRequired();
                 
                 builder.HasIndex(v => v.Value)
@@ -246,13 +240,6 @@ namespace PizzaX.Infrastructure.Data
                          .IsRequired();
                 });
 
-                builder.OwnsOne(p => p.Quantity, quantity =>
-                {
-                    quantity.Property(q => q.Value)
-                            .HasColumnName("Quantity")
-                            .IsRequired();
-                });
-
                 builder.Property(p => p.Description)
                        .HasColumnName("Description")
                        .HasMaxLength(100);
@@ -273,6 +260,7 @@ namespace PizzaX.Infrastructure.Data
                 // Name property
                 builder.Property(v => v.Value)
                        .HasColumnName("Name")
+                       .HasMaxLength(50)
                        .IsRequired();
 
                 builder.HasIndex(v => v.Value)

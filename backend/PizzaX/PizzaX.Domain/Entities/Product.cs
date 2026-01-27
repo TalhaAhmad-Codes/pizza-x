@@ -1,4 +1,5 @@
 ﻿using PizzaX.Domain.Common;
+using PizzaX.Domain.Enums.BaseProduct;
 
 namespace PizzaX.Domain.Entities
 {
@@ -14,7 +15,7 @@ namespace PizzaX.Domain.Entities
         // Constructors
         private Product() : base() { }
 
-        private Product(byte[]? image, decimal unitPrice, int quantity, string? description, string name, Guid categoryId) : base(image, unitPrice, quantity, description)
+        private Product(byte[]? image, decimal unitPrice, string? description, string name, Guid categoryId, ProductStockStatus stockStatus) : base(image, unitPrice, description, stockStatus)
         {
             Guard.AgainstNullOrWhitespace(name, nameof(Name));
 
@@ -22,8 +23,8 @@ namespace PizzaX.Domain.Entities
         }
 
         // Method - Create a new object
-        public static Product Create(byte[]? image, decimal unitPrice, int quantity, string? description, string name, Guid categoryId)
-            => new(image, unitPrice, quantity, description, name, categoryId);
+        public static Product Create(byte[]? image, decimal unitPrice, string? description, string name, Guid categoryId, ProductStockStatus stockStatus)
+            => new(image, unitPrice, description, name, categoryId, stockStatus);
 
         /*******************************/
         /* Methods - Update properties */

@@ -8,8 +8,6 @@ namespace PizzaX.Application.DTOs.BaseProductDTOs
         // Data fields
         public decimal? MinPrice { get; init; }
         public decimal? MaxPrice { get; init; }
-        public int? MinQuantity { get; init; }
-        public int? MaxQuantity { get; init; }
         public ProductStockStatus? StockStatus { get; init; }
     }
 }

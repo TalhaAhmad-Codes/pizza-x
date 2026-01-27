@@ -21,8 +21,8 @@ namespace PizzaX.Application.Services
             var product = Product.Create(
                 image: dto.Image,
                 unitPrice: dto.UnitPrice,
-                quantity: dto.Quantity,
                 description: dto.Description,
+                stockStatus: dto.StockStatus,
                 name: dto.Name,
                 categoryId: dto.CategoryId
             );
@@ -103,13 +103,13 @@ namespace PizzaX.Application.Services
             return true;
         }
 
-        public async Task<bool> UpdateQuantityAsync(ProductUpdateQuantityDto dto)
+        public async Task<bool> UpdateStockStatusAsync(ProductUpdateStockStatusDto dto)
         {
             var product = await repository.GetByIdAsync(dto.Id);
 
             if (product is null) return false;
 
-            product.UpdateQuantity(dto.Quantity);
+            product.UpdateStockStatus(dto.StockStatus);
             await repository.UpdateAsync(product);
             return true;
         }

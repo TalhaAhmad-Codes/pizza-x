@@ -8,8 +8,6 @@ namespace PizzaX.Application.DTOs.BaseProductDTOs
         // Data fields
         public byte[]? Image { get; init; }
         public decimal UnitPrice { get; init; }
-        public decimal TotalPrice { get; init; }
-        public int Quantity { get; init; }
         public ProductStockStatus StockStatus { get; init; }
         public string? Description { get; init; }
     }

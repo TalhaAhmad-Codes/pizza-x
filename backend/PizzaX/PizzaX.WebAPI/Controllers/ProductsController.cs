@@ -93,13 +93,13 @@ namespace PizzaX.WebAPI.Controllers
             }
         }
 
-        [HttpPatch("update/quantity")]
-        public async Task<IActionResult> UpdateQuantityAsync(ProductUpdateQuantityDto dto)
+        [HttpPatch("update/stock-status")]
+        public async Task<IActionResult> UpdateStockStatusAsync(ProductUpdateStockStatusDto dto)
         {
             try
             {
-                var result = await service.UpdateQuantityAsync(dto);
-                return result ? Ok("Product's quantity has been update successfully.") : NotFound();
+                var result = await service.UpdateStockStatusAsync(dto);
+                return result ? Ok("Product's stock status has been update successfully.") : NotFound();
             }
             catch (DomainException e)
             {

@@ -6,7 +6,7 @@ namespace PizzaX.Application.Interfaces.Services
     {
         Task<bool> UpdateImageAsync(ProductUpdateImageDto dto);
         Task<bool> UpdatePriceAsync(ProductUpdatePriceDto dto);
-        Task<bool> UpdateQuantityAsync(ProductUpdateQuantityDto dto);
+        Task<bool> UpdateStockStatusAsync(ProductUpdateStockStatusDto dto);
         Task<bool> UpdateDescriptionAsync(ProductUpdateDescriptionDto dto);
     }
 }

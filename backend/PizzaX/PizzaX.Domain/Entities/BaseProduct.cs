@@ -10,40 +10,30 @@ namespace PizzaX.Domain.Entities
         // Attributes
         public byte[]? Image { get; protected set; }
         public Price Price { get; protected set; }
-        public Quantity Quantity { get; protected set; }
         public string? Description { get; protected set; }
         public ProductStockStatus StockStatus { get; protected set; }
-        public decimal TotalPrice => Price.TotalPrice(Quantity);
 
         // Constructors
         protected BaseProduct() { }
 
-        protected BaseProduct(byte[]? image, decimal unitPrice, int quantity, string? description)
+        protected BaseProduct(byte[]? image, decimal unitPrice, string? description, ProductStockStatus stockStatus)
         {
             Guard.AgainstWhitespace(description, nameof(Description));
 
             Image = image;
             Price = Price.Create(unitPrice);
-            Quantity = Quantity.Create(quantity);
-            StockStatus = GetStockStatus();
+            StockStatus = stockStatus;
             Description = Function.Simplify(description);
         }
-
-        // Method - SetStockStatus
-        protected ProductStockStatus GetStockStatus()
-            => Quantity.Value > 0 ? ProductStockStatus.InStock : ProductStockStatus.OutOfStock;
 
         /***********************************************/
         /* Methods to change properties of the product */
         /***********************************************/
 
-        // Update quantity of the product
-        public void UpdateQuantity(int quantity)
+        // Update stock status of the product
+        public void UpdateStockStatus(ProductStockStatus stockStatus)
         {
-            Guard.AgainstZeroOrLess(quantity, nameof(Quantity));
-
-            Quantity = Quantity.Create(quantity);
-            StockStatus = GetStockStatus();
+            StockStatus = stockStatus;
 
             MarkUpdated();
         }
