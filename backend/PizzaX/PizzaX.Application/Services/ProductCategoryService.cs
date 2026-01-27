@@ -8,21 +8,21 @@ using PizzaX.Domain.Entities;
 
 namespace PizzaX.Application.Services
 {
-    public sealed class PizzaVarietyService : IPizzaVarietyService
+    public sealed class ProductCategoryService : IProductCategoryService
     {
-        private readonly IPizzaVarietyRepository repository;
+        private readonly IProductCategoryRepository repository;
 
-        public PizzaVarietyService(IPizzaVarietyRepository repository)
+        public ProductCategoryService(IProductCategoryRepository repository)
             => this.repository = repository;
 
         public async Task<BaseCategoryDto> CreateAsync(CreateBaseCategoryDto dto)
         {
-            var variety = PizzaVariety.Create(
-                name: dto.Name
+            var category = ProductCategory.Create(
+                category: dto.Name
             );
 
-            await repository.AddAsync(variety);
-            return BaseCategoryMapper.PizzaVarietyToDto(variety);
+            await repository.AddAsync(category);
+            return BaseCategoryMapper.ProductCategoryToDto(category);
         }
 
         public async Task<PagedResultDto<BaseCategoryDto>> GetAllAsync(BaseCategoryFilterDto filterDto)
@@ -31,36 +31,35 @@ namespace PizzaX.Application.Services
 
             return new PagedResultDto<BaseCategoryDto>
             {
-                Items = result.Items.Select(BaseCategoryMapper.PizzaVarietyToDto).ToList(),
+                Items = result.Items.Select(BaseCategoryMapper.ProductCategoryToDto).ToList(),
                 TotalCount = result.TotalCount
             };
         }
 
         public async Task<BaseCategoryDto?> GetByIdAsync(Guid id)
         {
-            var variety = await repository.GetByIdAsync(id);
-
-            return variety is null ? null : BaseCategoryMapper.PizzaVarietyToDto(variety);
+            var category = await repository.GetByIdAsync(id);
+            return category is null ? null : BaseCategoryMapper.ProductCategoryToDto(category);
         }
 
         public async Task<bool> RemoveAsync(Guid id)
         {
-            var variety = await repository.GetByIdAsync(id);
+            var category = await repository.GetByIdAsync(id);
 
-            if (variety is null) return false;
+            if (category is null) return false;
 
-            await repository.RemoveAsync(variety);
+            await repository.RemoveAsync(category);
             return true;
         }
 
         public async Task<bool> UpdateNameAsync(BaseCategoryUpdateNameDto dto)
         {
-            var variety = await repository.GetByIdAsync(dto.Id);
+            var category = await repository.GetByIdAsync(dto.Id);
 
-            if (variety is null) return false;
+            if (category is null) return false;
 
-            variety.UpdateName(dto.Name);
-            await repository.UpdateAsync(variety);
+            category.UpdateName(dto.Name);
+            await repository.UpdateAsync(category);
             return true;
         }
     }
