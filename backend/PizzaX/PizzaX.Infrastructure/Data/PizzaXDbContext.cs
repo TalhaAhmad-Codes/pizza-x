@@ -11,8 +11,6 @@ namespace PizzaX.Infrastructure.Data
         public DbSet<Employee> Employees => Set<Employee>();
         public DbSet<Pizza> Pizzas => Set<Pizza>();
         public DbSet<PizzaVariety> PizzaVarieties => Set<PizzaVariety>();
-        public DbSet<Fries> Fries => Set<Fries>();
-        public DbSet<Drink> Drinks => Set<Drink>();
         
         // Constructor
         public PizzaXDbContext(DbContextOptions<PizzaXDbContext> options) : base(options) { }
@@ -214,83 +212,6 @@ namespace PizzaX.Infrastructure.Data
                 
                 builder.HasIndex(v => v.Name)
                        .IsUnique();
-            });
-
-            /*/ <----- Fries - Configuration -----> /*/
-            modelBuilder.Entity<Fries>(builder =>
-            {
-                // Category property
-                builder.Property(f => f.Category)
-                       .IsRequired();
-
-                builder.HasIndex(f => f.Category)
-                       .IsUnique();
-
-                // Product configs
-                builder.OwnsOne(p => p.Price, price =>
-                {
-                    price.Property(r => r.UnitPrice)
-                         .HasColumnName("Price")
-                         .IsRequired();
-                });
-
-                builder.OwnsOne(p => p.Quantity, quantity =>
-                {
-                    quantity.Property(q => q.Value)
-                            .HasColumnName("Quantity")
-                            .IsRequired();
-                });
-
-                builder.Property(p => p.StockStatus)
-                       .HasColumnName("StockStatus")
-                       .IsRequired();
-            });
-
-            /*/ <----- Drink - Configurations -----> /*/
-            modelBuilder.Entity<Drink>(builder =>
-            {
-                // Drink type config
-                builder.Property(d => d.DrinkType)
-                       .HasColumnName("Type")
-                       .IsRequired();
-
-                // Drink details config
-                builder.OwnsOne(d => d.DrinkDetails, details =>
-                {
-                    // Company name
-                    details.Property(c => c.Company)
-                           .HasColumnName("Company")
-                           .IsRequired();
-
-                    // Retailer contact number
-                    details.OwnsOne(n => n.RetailerContactNumber, number =>
-                    {
-                        number.Property(c => c.Value)
-                              .HasColumnName("Contact");
-
-                        number.HasIndex(c => c.Value)
-                              .IsUnique();
-                    });
-                });
-
-                // Product configs
-                builder.OwnsOne(p => p.Price, price =>
-                {
-                    price.Property(r => r.UnitPrice)
-                         .HasColumnName("Price")
-                         .IsRequired();
-                });
-
-                builder.OwnsOne(p => p.Quantity, quantity =>
-                {
-                    quantity.Property(q => q.Value)
-                            .HasColumnName("Quantity")
-                            .IsRequired();
-                });
-
-                builder.Property(p => p.StockStatus)
-                       .HasColumnName("StockStatus")
-                       .IsRequired();
             });
 
             base.OnModelCreating(modelBuilder);

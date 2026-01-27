@@ -1,6 +1,6 @@
 ﻿using PizzaX.Application.DTOs.Common;
 using PizzaX.Application.DTOs.PizzaDTOs;
-using PizzaX.Application.DTOs.ProductDTOs.BaseProductUpdateDtos;
+using PizzaX.Application.DTOs.BaseProductDTOs.BaseProductUpdateDtos;
 using PizzaX.Application.Interfaces.Repositories;
 using PizzaX.Application.Interfaces.Services;
 using PizzaX.Application.Mappers;

@@ -1,0 +1,14 @@
+﻿namespace PizzaX.Domain.Entities
+{
+    public sealed class ProductCategory : BaseCategory<Product>
+    {
+        // Constructors
+        private ProductCategory() : base() { }
+        
+        private ProductCategory(string category) : base(category) { }
+
+        // Method - Create a new object
+        public static ProductCategory Create(string category)
+            => new(category);
+    }
+}

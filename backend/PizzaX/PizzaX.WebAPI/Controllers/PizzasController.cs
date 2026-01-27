@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PizzaX.Application.DTOs.PizzaDTOs;
-using PizzaX.Application.DTOs.ProductDTOs.BaseProductUpdateDtos;
+using PizzaX.Application.DTOs.BaseProductDTOs.BaseProductUpdateDtos;
 using PizzaX.Application.Interfaces.Services;
 using PizzaX.Domain.Common;
 

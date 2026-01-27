@@ -3,7 +3,7 @@ using PizzaX.Application.DTOs.PizzaDTOs;
 
 namespace PizzaX.Application.Interfaces.Services
 {
-    public interface IPizzaService : IProductUpdateService
+    public interface IPizzaService : IBaseProductUpdateService
     {
         Task<PagedResultDto<PizzaDto>> GetAllAsync(PizzaFilterDto filterDto);
 

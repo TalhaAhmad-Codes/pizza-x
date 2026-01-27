@@ -1,77 +1,39 @@
 ﻿using PizzaX.Domain.Common;
-using PizzaX.Domain.Common.Entities;
-using PizzaX.Domain.Enums.Product;
-using PizzaX.Domain.ValueObjects.Pizza;
-using PizzaX.Domain.ValueObjects.Product;
 
 namespace PizzaX.Domain.Entities
 {
-    public abstract class Product : AuditableEntity
+    public sealed class Product : BaseProduct
     {
         // Attributes
-        public byte[]? Image { get; protected set; }
-        public Price Price { get; protected set; }
-        public Quantity Quantity { get; protected set; }
-        public string? Description { get; protected set; }
-        public ProductStockStatus StockStatus { get; protected set; }
-        public decimal TotalPrice => Price.TotalPrice(Quantity);
+        public string Name { get; private set; }
+        public Guid CategoryId { get; private set; }
+
+        // Navigation
+        public ProductCategory Category { get; private set; }
 
         // Constructors
-        protected Product() { }
+        private Product() : base() { }
 
-        protected Product(byte[]? image, decimal unitPrice, int quantity, string? description)
+        private Product(byte[]? image, decimal unitPrice, int quantity, string? description, string name, Guid categoryId) : base(image, unitPrice, quantity, description)
         {
-            Guard.AgainstWhitespace(description, nameof(Description));
+            Guard.AgainstNullOrWhitespace(name, nameof(Name));
 
-            Image = image;
-            Price = Price.Create(unitPrice);
-            Quantity = Quantity.Create(quantity);
-            StockStatus = GetStockStatus();
-            Description = description?.Trim();
+            Name = name;
         }
 
-        // Method - SetStockStatus
-        protected ProductStockStatus GetStockStatus()
-            => Quantity.Value > 0 ? ProductStockStatus.InStock : ProductStockStatus.OutOfStock;
+        // Method - Create a new object
+        public static Product Create(byte[]? image, decimal unitPrice, int quantity, string? description, string name, Guid categoryId)
+            => new(image, unitPrice, quantity, description, name, categoryId);
 
-        /***********************************************/
-        /* Methods to change properties of the product */
-        /***********************************************/
+        /*******************************/
+        /* Methods - Update properties */
+        /*******************************/
 
-        // Update quantity of the product
-        public void UpdateQuantity(int quantity)
+        public void UpdateName(string name)
         {
-            Guard.AgainstZeroOrLess(quantity, nameof(Quantity));
+            Guard.AgainstNullOrWhitespace(name, nameof(Name));
 
-            Quantity = Quantity.Create(quantity);
-            StockStatus = GetStockStatus();
-
-            MarkUpdated();
-        }
-
-        // Update price of the product
-        public void UpdatePrice(decimal unitPrice)
-        {
-            Price = Price.Create(unitPrice);
-
-            MarkUpdated();
-        }
-
-        // Update image of the product
-        public void UpdateImage(byte[]? image)
-        {
-            Image = image;
-
-            MarkUpdated();
-        }
-
-        // Update description of the product
-        public void UpdateDescription(string? description)
-        {
-            Guard.AgainstWhitespace(description, nameof(Description));
-
-            Description = description?.Trim();
-
+            Name = name;
             MarkUpdated();
         }
     }

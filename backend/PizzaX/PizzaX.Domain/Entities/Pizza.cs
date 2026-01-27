@@ -2,13 +2,13 @@
 
 namespace PizzaX.Domain.Entities
 {
-    public sealed class Pizza : Product
+    public sealed class Pizza : BaseProduct
     {
         // Attributes
         public PizzaSize Size { get; private set; }
         public Guid VarietyId { get; private set; }
 
-        // Navigation properties
+        // Navigation property
         public PizzaVariety Variety { get; private set; }
 
         // Constructors
