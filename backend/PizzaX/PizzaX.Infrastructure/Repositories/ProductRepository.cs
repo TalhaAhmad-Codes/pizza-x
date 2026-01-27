@@ -2,6 +2,7 @@
 using PizzaX.Application.DTOs.Common;
 using PizzaX.Application.DTOs.ProductDTOs;
 using PizzaX.Application.Interfaces.Repositories;
+using PizzaX.Domain.Common;
 using PizzaX.Domain.Entities;
 using PizzaX.Infrastructure.Data;
 
@@ -17,7 +18,7 @@ namespace PizzaX.Infrastructure.Repositories
 
             // Applying filters
             if (filterDto.Name != null)
-                query = query.Where(p => p.Name.ToLower() == filterDto.Name.Trim().ToLower());
+                query = query.Where(p => p.Name == Function.Simplify(filterDto.Name));
 
             if (filterDto.CategoryId.HasValue)
                 query = query.Where(p => p.CategoryId == filterDto.CategoryId);

@@ -2,6 +2,7 @@
 using PizzaX.Application.DTOs.Common;
 using PizzaX.Application.DTOs.EmployeeDTOs;
 using PizzaX.Application.Interfaces.Repositories;
+using PizzaX.Domain.Common;
 using PizzaX.Domain.Entities;
 using PizzaX.Domain.Enums.User;
 using PizzaX.Infrastructure.Data;
@@ -33,10 +34,10 @@ namespace PizzaX.Infrastructure.Repositories
                 query = query.Where(e => e.Salary <= filterDto.MaxSalary.Value);
 
             if (filterDto.CNIC != null)
-                query = query.Where(e => e.CNIC == filterDto.CNIC);
+                query = query.Where(e => e.CNIC == Function.Simplify(filterDto.CNIC)!);
 
             if (filterDto.Contact != null)
-                query = query.Where(e => e.Contact == filterDto.Contact);
+                query = query.Where(e => e.Contact == Function.Simplify(filterDto.Contact)!);
 
             if (filterDto.JoiningDate.HasValue)
                 query = query.Where(e => e.JoiningDate == filterDto.JoiningDate);
@@ -48,34 +49,34 @@ namespace PizzaX.Infrastructure.Repositories
                 query = query.Where(e => e.HasLeft == filterDto.HaveLeft);
 
             if (filterDto.FirstName != null)
-                query = query.Where(e => e.Name.FirstName.ToLower() == filterDto.FirstName.Trim().ToLower());
+                query = query.Where(e => e.Name.FirstName.ToLower() == Function.Simplify(filterDto.FirstName, true));
 
             if (filterDto.MidName != null)
-                query = query.Where(e => e.Name.MidName!.ToLower() == filterDto.MidName.Trim().ToLower());
+                query = query.Where(e => e.Name.MidName!.ToLower() == Function.Simplify(filterDto.MidName, true));
 
             if (filterDto.LastName != null)
-                query = query.Where(e => e.Name.LastName.ToLower() == filterDto.LastName.Trim().ToLower());
+                query = query.Where(e => e.Name.LastName.ToLower() == Function.Simplify(filterDto.LastName, true));
 
             if (filterDto.FatherName != null)
-                query = query.Where(e => e.Name.FatherName.ToLower() == filterDto.FatherName.Trim().ToLower());
+                query = query.Where(e => e.Name.FatherName.ToLower() == Function.Simplify(filterDto.FatherName, true));
 
             if (filterDto.House != null)
-                query = query.Where(e => e.Address.House.ToLower() == filterDto.House.Trim().ToLower());
+                query = query.Where(e => e.Address.House.ToLower() == Function.Simplify(filterDto.House, true));
 
             if (filterDto.Area != null)
-                query = query.Where(e => e.Address.Area.ToLower() == filterDto.Area.Trim().ToLower());
+                query = query.Where(e => e.Address.Area.ToLower() == Function.Simplify(filterDto.Area, true));
 
             if (filterDto.Street != null)
-                query = query.Where(e => e.Address.Street!.ToLower() == filterDto.Street.Trim().ToLower());
+                query = query.Where(e => e.Address.Street!.ToLower() == Function.Simplify(filterDto.Street, true));
 
             if (filterDto.City != null)
-                query = query.Where(e => e.Address.City.ToLower() == filterDto.City.Trim().ToLower());
+                query = query.Where(e => e.Address.City.ToLower() == Function.Simplify(filterDto.City, true));
 
             if (filterDto.Province != null)
-                query = query.Where(e => e.Address.Province!.ToLower() == filterDto.Province.Trim().ToLower());
+                query = query.Where(e => e.Address.Province!.ToLower() == Function.Simplify(filterDto.Province, true));
 
             if (filterDto.Country != null)
-                query = query.Where(e => e.Address.Country!.ToLower() == filterDto.Country.Trim().ToLower());
+                query = query.Where(e => e.Address.Country!.ToLower() == Function.Simplify(filterDto.Country, true));
 
             var totalCount = await query.CountAsync();
             var items = await GetPagedResultItemsAsync(query, filterDto.PageNumber, filterDto.PageSize);

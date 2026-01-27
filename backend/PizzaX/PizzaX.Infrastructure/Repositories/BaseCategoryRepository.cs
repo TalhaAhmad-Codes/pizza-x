@@ -2,6 +2,7 @@
 using PizzaX.Application.DTOs.BaseCategoryDTOs;
 using PizzaX.Application.DTOs.Common;
 using PizzaX.Application.Interfaces.Repositories;
+using PizzaX.Domain.Common;
 using PizzaX.Infrastructure.Data;
 
 namespace PizzaX.Infrastructure.Repositories
@@ -16,7 +17,7 @@ namespace PizzaX.Infrastructure.Repositories
 
             // Applying filters
             if (filterDto.Name != null)
-                query = query.Where(c => c.Equals(filterDto.Name));
+                query = query.Where(c => c.Equals(Function.Simplify(filterDto.Name, true)));
 
             var totalCount = await query.CountAsync();
             var items = await GetPagedResultItemsAsync(query, filterDto.PageNumber, filterDto.PageSize);

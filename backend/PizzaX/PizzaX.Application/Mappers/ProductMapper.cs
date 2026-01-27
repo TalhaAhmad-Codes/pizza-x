@@ -1,4 +1,5 @@
 ﻿using PizzaX.Application.DTOs.ProductDTOs;
+using PizzaX.Domain.Common;
 using PizzaX.Domain.Entities;
 
 namespace PizzaX.Application.Mappers
@@ -10,7 +11,7 @@ namespace PizzaX.Application.Mappers
             {
                 Id = product.Id,
                 CategoryId = product.CategoryId,
-                Name = product.Name,
+                Name = Function.ToCapitalize(product.Name),
                 Image = product.Image,
                 TotalPrice = product.TotalPrice,
                 UnitPrice = product.Price.UnitPrice,

@@ -1,4 +1,5 @@
 ﻿using PizzaX.Application.DTOs.BaseCategoryDTOs;
+using PizzaX.Domain.Common;
 using PizzaX.Domain.Entities;
 
 namespace PizzaX.Application.Mappers
@@ -9,7 +10,7 @@ namespace PizzaX.Application.Mappers
             => new()
             {
                 Id = variety.Id,
-                Name = variety.Value,
+                Name = Function.ToCapitalize(variety.Value),
                 CreatedAt = variety.CreatedAt,
                 UpdatedAt = variety.UpdatedAt
             };
@@ -18,7 +19,7 @@ namespace PizzaX.Application.Mappers
             => new()
             {
                 Id = category.Id,
-                Name = category.Value,
+                Name = Function.ToCapitalize(category.Value),
                 CreatedAt = category.CreatedAt,
                 UpdatedAt = category.UpdatedAt
             };
