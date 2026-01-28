@@ -18,6 +18,7 @@ namespace PizzaX.Domain.Entities
         private Product(byte[]? image, decimal unitPrice, string? description, string name, Guid categoryId, ProductStockStatus stockStatus) : base(image, unitPrice, description, stockStatus)
         {
             Guard.AgainstNullOrWhitespace(name, nameof(Name));
+            Guard.AgainstInvalidRegexPattern(RegexPattern.CategoryName, name, nameof(name));
 
             Name = Function.Simplify(name, true)!;
         }

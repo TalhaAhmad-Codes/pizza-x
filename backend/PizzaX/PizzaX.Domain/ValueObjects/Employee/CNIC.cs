@@ -11,7 +11,7 @@ namespace PizzaX.Domain.ValueObjects.Employee
         private CNIC() { }
         private CNIC(string value)
         {
-            Guard.AgainstInvalidRegexPattern(RegexPattern.CNIC, value, nameof(CNIC), "It must follows this format: XXXXX-YYYYYYY-Z");
+            Guard.AgainstInvalidRegexPattern(RegexPattern.CNIC, value, nameof(CNIC));
 
             Value = value;
         }

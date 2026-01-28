@@ -60,14 +60,14 @@ namespace PizzaX.Domain.Common
         }
 
         // Method - Against given Regex pattern
-        public static void AgainstInvalidRegexPattern(String pattern, string value, string property, string? extraMessage = null)
+        public static void AgainstInvalidRegexPattern(Pattern pattern, string value, string property)
         {
-            if (!Regex.IsMatch(value, pattern))
+            if (!Regex.IsMatch(value, pattern.Value))
             {
                 var message = $"The given {property} format is invalid.";
 
-                if (extraMessage != null)
-                    message += $"\n{extraMessage}";
+                if (pattern.Message != null)
+                    message += $"\n{pattern.Message}";
 
                 throw new DomainException(message);
             }

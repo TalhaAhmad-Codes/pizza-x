@@ -44,6 +44,7 @@ namespace PizzaX.Infrastructure.Data
 
                 // Username is required and must be unique
                 builder.Property(u => u.Username)
+                       .HasMaxLength(20)
                        .IsRequired();
 
                 builder.HasIndex(u => u.Username)

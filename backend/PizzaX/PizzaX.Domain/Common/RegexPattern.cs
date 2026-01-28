@@ -2,11 +2,53 @@
 {
     public static class RegexPattern
     {
-        public static String Email => @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-        public static String ContactNumber => @"^(?:\+92|92|0)3\d{9}$";
-        public static String CNIC => @"^\d{5}-\d{7}-\d{1}$";
-        public static String SingleName => @"^[A-Za-z]+$";
-        public static String FullName => @"^[A-Za-z]+(?: [A-Za-z]+)*$";
-        public static String CategoryName => FullName;
+        public static Pattern Email => new(
+            @"^[^@\s]+@[^@\s]+\.[^@\s]+$"
+        );
+
+        public static Pattern ContactNumber => new(
+            @"^(?:\+92|92|0)3\d{9}$",
+            "It can only contain numbers in the format of +923XXYYYYYYY, 923XXYYYYYYY or 03XXYYYYYYY."
+        );
+        public static Pattern CNIC => new(
+            @"^\d{5}-\d{7}-\d{1}$",
+            "It can only contain the formate of XXXXX-YYYYYYY-Z."
+        );
+
+        public static Pattern Username => new(
+            @"^[A-Za-z][A-Za-z0-9]{2,19}$",
+            "It can only contain alphanumeric characters, and start with an alphabet, with a length of 3-20 characters."
+        );
+        
+        public static Pattern SingleName => new(
+            @"^[A-Za-z]+$",
+            "It can only contain alphabets."
+        );
+        
+        public static Pattern FullName => new(
+            @"^[A-Za-z]+(?: [A-Za-z]+)*$",
+            "It can only contain alphabets and a single space between them."
+        );
+
+        public static Pattern CategoryName => FullName;
+        public static Pattern ProductName => FullName;
+    }
+
+    public struct Pattern
+    {
+        public String Value { get; }
+        public string? Message { get; }
+
+        public Pattern(String value, string? message = null)
+        {
+            if (string.IsNullOrWhiteSpace(message))
+                throw new DomainException("Regex pattern message can't be empty / whitespace.");
+
+            if (String.IsNullOrWhiteSpace(value))
+                throw new DomainException("Regex pattern can't be empty / whitespace.");
+
+            Value = value;
+            Message = message;
+        }
     }
 }

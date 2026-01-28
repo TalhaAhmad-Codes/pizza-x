@@ -24,6 +24,7 @@ namespace PizzaX.Domain.Entities
         {
             // Guard against invalid values
             Guard.AgainstNullOrWhitespace(username, nameof(Username));
+            Guard.AgainstInvalidRegexPattern(RegexPattern.Username, username, nameof(username));
             Guard.AgainstNullOrWhitespace(password, nameof(Password));
             Guard.AgainstMinStringLength(password, 8, nameof(Password));
 
@@ -64,6 +65,7 @@ namespace PizzaX.Domain.Entities
         public void UpdateUsername(string username)
         {
             Guard.AgainstNullOrWhitespace(username, nameof(Username));
+            Guard.AgainstInvalidRegexPattern(RegexPattern.Username, username, nameof(username));
 
             Username = Function.Simplify(username)!;
 

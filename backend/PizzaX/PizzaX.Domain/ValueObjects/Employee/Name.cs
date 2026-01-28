@@ -17,12 +17,11 @@ namespace PizzaX.Domain.ValueObjects.Employee
             Guard.AgainstNullOrWhitespace(firstName, nameof(FirstName));
             Guard.AgainstWhitespace(midName, nameof(MidName));
             Guard.AgainstNullOrWhitespace(lastName, nameof(LastName));
-
-            var regexMessage = "It can only contain alphabets.";
-            Guard.AgainstInvalidRegexPattern(RegexPattern.SingleName, firstName, nameof(FirstName), regexMessage);
-            Guard.AgainstInvalidRegexPattern(RegexPattern.SingleName, midName!, nameof(MidName), regexMessage);
-            Guard.AgainstInvalidRegexPattern(RegexPattern.SingleName, lastName, nameof(LastName), regexMessage);
-            Guard.AgainstInvalidRegexPattern(RegexPattern.FullName, fatherName, nameof(FatherName), regexMessage);
+            
+            Guard.AgainstInvalidRegexPattern(RegexPattern.SingleName, firstName, nameof(FirstName));
+            Guard.AgainstInvalidRegexPattern(RegexPattern.SingleName, midName!, nameof(MidName));
+            Guard.AgainstInvalidRegexPattern(RegexPattern.SingleName, lastName, nameof(LastName));
+            Guard.AgainstInvalidRegexPattern(RegexPattern.FullName, fatherName, nameof(FatherName));
 
             FirstName = Function.Simplify(firstName)!;
             MidName = Function.Simplify(midName);

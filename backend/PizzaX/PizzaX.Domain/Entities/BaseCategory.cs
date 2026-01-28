@@ -17,6 +17,7 @@ namespace PizzaX.Domain.Entities
         protected BaseCategory(string category)
         {
             Guard.AgainstNullOrWhitespace(category, nameof(category));
+            Guard.AgainstInvalidRegexPattern(RegexPattern.CategoryName, category, nameof(category));
 
             Value = Function.Simplify(category, true)!;
         }
